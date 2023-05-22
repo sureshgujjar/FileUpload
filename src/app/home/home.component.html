@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+
+<body>
+    {{fileForm.value|json}}
+<div id="outer">
+    <div id="img-container">
+        <img id="imageContain" src="assets/svgrepocom.svg" alt="Image file">
+    </div>
+    <br>
+    <div>
+        <form [formGroup]="fileForm" (ngSubmit)="upload()">
+            <div class="input">
+            <input formControlName="fileData" type="file" class="form-control" id="inputField" formenctype="multipart/form-data">
+            <br>    
+            <div>
+                <button class="btn btn-primary" type="submit" id="smtBtn">Submit</button></div>
+            </div>
+        </form>
+    </div>
+      
+  </div>
+    
+   
+</body>
+
+</html>

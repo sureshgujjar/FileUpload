@@ -1,0 +1,39 @@
+.input
+{
+    width: 805px;
+ 
+}
+#outer
+{
+    margin-top:25px;
+    margin-left: 350px;
+}
+#img-container
+{
+    height: 217px;
+    width: 805px;
+    display: flex;
+}
+#imageContain
+{
+   margin-top: 25px;
+   margin-left: 300px;
+}
+.btn-primary,.btn-primary:active,.btn-primary:visited
+{
+   background-color:#EC5565;
+   border-color: #EC5565;
+}
+.btn-primary:hover
+{
+    background-color:#D94453;
+}
+input[type=file]::file-selector-button {
+    background-color:#EC5565;
+    color:white;
+   
+  }
+input[type=file]::file-selector-button:hover {
+    background-color:#D94453;
+    color:white;
+}
