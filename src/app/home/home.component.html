@@ -17,12 +17,16 @@
     <br>
     <div>
         <form [formGroup]="fileForm" (ngSubmit)="upload()">
-            <div class="input">
-            <input formControlName="fileData" type="file" class="form-control" id="inputField" formenctype="multipart/form-data">
-            <br>    
+            <input formControlName="fileName" type="text" class="form-control input" id="fileName" formenctype="multipart/form-data" placeholder="Enter File Name ">
+            <br>
+            <div class="input input-group mb-3">
+               
+            <input type="file" (change)="selectFile($event)" class="form-control" id="fileData" formenctype="multipart/form-data">  
             <div>
-                <button class="btn btn-primary" type="submit" id="smtBtn">Submit</button></div>
-            </div>
+                <button class="btn btn-primary" type="submit" id="smtBtn">Upload</button>
+            </div>    
+        </div>
+          
         </form>
     </div>
       

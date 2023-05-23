@@ -8,7 +8,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   fileForm!:FormGroup
- 
+  file!:FileList
   constructor(private formBuilder:FormBuilder) {
     
     
@@ -16,12 +16,19 @@ export class HomeComponent implements OnInit {
   ngOnInit()
   {
     this.fileForm=this.formBuilder.group({
-      fileData:new FormControl(null),
+      fileName:new FormControl(''),
       uploadDate:new FormControl(new Date()),
       })
   }
-  upload( )
-  {
+  selectFile(event:any)
+{
+  this.file=event.target.files.item(0);
   
-  }
+}
+upload()
+{
+  console.log(this.file);
+  console.log(this.fileForm.getRawValue());
+}
+
 }
