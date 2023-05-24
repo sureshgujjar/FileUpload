@@ -9,21 +9,24 @@
 </head>
 
 <body>
-    {{fileForm.value|json}}
+    {{fileForm.value|json}} <br>
+<span style="color:red">{{process}}</span>
 <div id="outer">
     <div id="img-container">
         <img id="imageContain" src="assets/svgrepocom.svg" alt="Image file">
     </div>
     <br>
     <div>
-        <form [formGroup]="fileForm" (ngSubmit)="upload()">
-            <input formControlName="fileName" type="text" class="form-control input" id="fileName" formenctype="multipart/form-data" placeholder="Enter File Name ">
+        <form [formGroup]="fileForm" (ngSubmit)="upload()" enctype="multipart/form-data">
+            <input formControlName="fileName" type="text" class="form-control input" id="fileName" placeholder="Enter File Name ">
+            <span id="errormsg"*ngIf="fileForm.get('fileName')?.hasError('required')&&fileForm.get('fileName')?.['touched']">File name is required</span>
+            <span id="errormsg"*ngIf="fileForm.get('fileName')?.hasError('pattern')&&fileForm.get('fileName')?.['dirty']">Dot(.) not Allowed</span>
             <br>
             <div class="input input-group mb-3">
                
-            <input type="file" (change)="selectFile($event)" class="form-control" id="fileData" formenctype="multipart/form-data">  
+            <input type="file" (change)="selectFile($event)" class="form-control" id="fileData">  
             <div>
-                <button class="btn btn-primary" type="submit" id="smtBtn">Upload</button>
+                <button class="btn btn-primary" [disabled]="fileForm.invalid" type="submit" id="smtBtn">Upload</button>
             </div>    
         </div>
           
