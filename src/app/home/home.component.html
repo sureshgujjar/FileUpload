@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    {{fileForm.value|json}} <br>
+    <!-- {{fileForm.value|json}} <br>
+    {{fileInfo|json}} -->
 <span style="color:red">{{process}}</span>
 <div id="outer">
     <div id="img-container">
@@ -20,22 +21,46 @@
         <form [formGroup]="fileForm" (ngSubmit)="upload()" enctype="multipart/form-data">
             <input formControlName="fileName" type="text" class="form-control input" id="fileName" placeholder="Enter File Name ">
             <span id="errormsg"*ngIf="fileForm.get('fileName')?.hasError('required')&&fileForm.get('fileName')?.['touched']">File name is required</span>
-            <span id="errormsg"*ngIf="fileForm.get('fileName')?.hasError('pattern')&&fileForm.get('fileName')?.['dirty']">Dot(.) not Allowed</span>
+            <span id="errormsg"*ngIf="fileForm.get('fileName')?.hasError('pattern')&&!fileForm.get('fileName')?.['pristine']">Dot(.) not Allowed</span>
             <br>
             <div class="input input-group mb-3">
                
-            <input type="file" (change)="selectFile($event)" class="form-control" id="fileData">  
+            <input type="file" (change)="selectFile($event)" class="form-control" id="fileData"  formControlName="fileData"> 
+         
             <div>
                 <button class="btn btn-primary" [disabled]="fileForm.invalid" type="submit" id="smtBtn">Upload</button>
-            </div>    
+            </div>   
         </div>
-          
+        <span id="errormsg"*ngIf="fileForm.get('fileData')?.hasError('required')&&fileForm.get('fileData')?.['touched']">File is required</span> 
         </form>
     </div>
-      
   </div>
-    
+  <div>
+    <table class="table table-dark" id="myTable" >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <!-- <th scope="col">id</th> -->
+            <th scope="col">File Name</th>
+            <th scope="col">Upload Date</th>
+            <th scope="col">Location</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let file of fileInfo;let i=index;">
+            <th scope="row">{{i+1}}</th>
+            <!-- <td>{{file.id}}</td> -->
+            <td>{{file.fileName}}</td>
+            <td>{{file.uploadDate|date}}</td>
+            <td>{{file.fileLocation}}</td>
+            <td><button class="btn btn-danger" (click)="deleteFile(file.id)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
    
+  
 </body>
 
 </html>

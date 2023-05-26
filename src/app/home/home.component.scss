@@ -3,17 +3,16 @@
     width: 805px;
  
 }
-
-.input
+select
 {
-    
+    width: min-content;
 }
+
 #outer
 {
    
-    margin-left: 250px;
-    border: #c0c0c0 2px solid;
-    border-radius: 15px;
+    margin-left: 220px;
+    
     width:1080px;
     height: 400px;
     padding-left: 150px;
@@ -32,7 +31,7 @@
 }
 #errormsg
 {
-    color:#910000;
+    color:#000000;
     background-color:#ec5564a6;
     
 }
