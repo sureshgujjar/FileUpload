@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule } from '@angular/common/http';
-import {MatTableModule} from '@angular/material/table';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import {MatTableModule} from '@angular/material/table';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule
+    ProgressbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,8 +11,8 @@
 <body>
     <!-- {{fileForm.value|json}} <br>
     {{fileInfo|json}} -->
-<span style="color:red">{{process}}</span>
-<div id="outer">
+<!-- <span style="color:red">{{process}}</span> -->
+<div id="outer" class="container">
     <div id="img-container">
         <img id="imageContain" src="assets/svgrepocom.svg" alt="Image file">
     </div>
@@ -34,7 +34,12 @@
         <span id="errormsg"*ngIf="fileForm.get('fileData')?.hasError('required')&&fileForm.get('fileData')?.['touched']">File is required</span> 
         </form>
     </div>
+    <span *ngIf="process==100" style="color: rgb(9, 139, 9);" >{{fileMsg}}</span>
+    <div class="mb-2">
+      <progressbar [hidden]="process==100||process==0" [animate]="true" [value]="process" type="danger"><b>{{process}}%</b></progressbar>
+    </div>
   </div>
+ 
   <div>
     <table class="table table-dark" id="myTable" >
         <thead>
@@ -54,7 +59,7 @@
             <td>{{file.fileName}}</td>
             <td>{{file.uploadDate|date}}</td>
             <td>{{file.fileLocation}}</td>
-            <td><button class="btn btn-danger" (click)="deleteFile(file.id)">Delete</button></td>
+            <td ><button class="btn btn-danger" (click)="deleteFile(file.id)">Delete</button><button class="btn btn-success" id="dwnldBtn" (click)="loadFile(file.id,file.fileLocation)">Download</button></td>
           </tr>
         </tbody>
       </table>

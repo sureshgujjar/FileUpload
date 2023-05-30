@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import { FileInfo } from './home.component';
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,9 @@ export class FileUploadService {
 
   postFile(Data:any)
   {
-      return this.http.post('http://localhost:8080/file/upload',Data,{reportProgress:true});
+    const request = new HttpRequest('POST','http://localhost:8080/file/upload',Data,{reportProgress:true});
+    return this.http.request(request);
+      // return this.http.post('http://localhost:8080/file/upload',Data,{reportProgress:true});
   }
   getFile()
   {
@@ -19,5 +21,9 @@ export class FileUploadService {
   removeFile(id:String)
   {
      return this.http.delete(`http://localhost:8080/file/delete/${id}`);
-}
+  }
+  loadFile(id:String)
+  {
+    return this.http.get(`http://localhost:8080/file/load/${id}`,{responseType:'blob'});
+  }
 }
